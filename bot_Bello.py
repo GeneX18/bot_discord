@@ -1,5 +1,6 @@
 import os
 import discord
+import random
 from discord.ext import commands
 from dotenv import load_dotenv
 
@@ -11,7 +12,12 @@ intents = discord.Intents.default()
 intents.members = True
 intents.messages = True
 
-bot = commands.Bot(command_prefix='!piccolo', intents=intents)
+bot = commands.Bot(command_prefix='-', intents=intents)
+
+@bot.command(name='cerca', help='fa cose belle')
+async def cerca(ctx):
+    r = random.randint(1,7)
+    await ctx.send("hai trovato {} euro!".format(r))
 
 @bot.event
 async def on_ready():
@@ -20,4 +26,6 @@ async def on_ready():
             break
     members = '\n -'.join([member.name for member in guild.members])
     print(members)
+    
+    
 bot.run(TOKEN)
