@@ -9,9 +9,12 @@ class DBmanager:
         print(f_name)
 
     def loadFromFile(self):
-        with open(self.f_name, 'rb') as f:
-            global dbmap
-            dbmap = pickle.load(f)
+        try:
+            with open(self.f_name, 'rb') as f:
+                global dbmap
+                dbmap = pickle.load(f)
+        except EOFError:
+                dbmap = {}
 
     def saveInFile(self):
         with open(self.f_name, 'wb') as f:

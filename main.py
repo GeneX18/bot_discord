@@ -8,7 +8,6 @@ from Map import Map
 from discord.ext import commands
 #from discord_slash import SlashCommand, SlashContext
 #from discord_slash.utils.manage_commands import create_choice, create_option
-from replit import db
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -67,18 +66,6 @@ async def creaPG(ctx, *args):
         #updatePGinDB(id, pg)
         dbtest.updateDB(id, pg)
         await ctx.reply("Creazione completata.\n" + pg.printInfo())
-
-
-def updatePGinDB(id, pg):
-
-    db[id] = [
-        str(pg.nome),
-        str(pg.classe),
-        int(pg.lvl),
-        float(pg.exp),
-        int(pg.health),
-        int(pg.power)
-    ]
 
 
 @bot.command(name='vediPG', help='fa quello che dice')
