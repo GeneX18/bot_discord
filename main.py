@@ -14,7 +14,8 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 
-intents = discord.Intents.all()
+intents = discord.Intents.default()
+intents.message_content = True
 intents.members = True
 intents.messages = True
 
