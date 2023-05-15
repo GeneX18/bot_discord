@@ -65,6 +65,7 @@ async def creaPG(ctx, *args):
                 random.randint(-1, 5))
         #updatePGinDB(id, pg)
         db.updateDB(id, pg)
+        db.saveInFile()
         await ctx.reply("Creazione completata.\n" + pg.printInfo())
 
 
