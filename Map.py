@@ -1,13 +1,14 @@
 import random
+from Enemy import Enemy
 
 loc = ["Foresta Lunare", "Cave Rosse"]
 spawnList = [[
-    "Cinghiale", "Coniglio Mannaro", "Goblin", "Orsogufo", "Treant",
-    "Drago verde"
+    Enemy("Cinghiale"), Enemy("Coniglio Mannaro"), Enemy("Goblin"), Enemy("Orsogufo"), Enemy("Treant"),
+    Enemy("Drago verde")
 ],
              [
-                 "Ragno gigante", "Bandito", "Bugbear", "Protoplasma nero",
-                 "Orco", "Golem di Pietra"
+                 Enemy("Ragno gigante"), Enemy("Bandito"), Enemy("Bugbear"), Enemy("Protoplasma nero"),
+                 Enemy("Orco"), Enemy("Golem di Pietra")
              ]]
 spawnRate = [.4, .2, .2, .15, .04, .01]
 
@@ -32,6 +33,6 @@ class Map:
     def explore(self, locId):
         lID = locId - 1
         list = spawnList[lID]
-        encounter = ''.join(random.choices(list, spawnRate, k=1))
+        encounter = random.choices(list, spawnRate, k=1)
 
         return encounter

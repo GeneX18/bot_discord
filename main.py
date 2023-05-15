@@ -41,13 +41,13 @@ bot = commands.Bot(command_prefix='-', intents=intents)
 async def cerca(ctx):
     r = random.randint(1, 18)
     await ctx.send(
-        str(ctx.author.name) + ' ha trovato, ' +
+        str(ctx.author.name) + ' ha trovato ' +
         ''.join(random.choices(cose, pesi, k=1)).format(r))
 
 
 # COMANDI RPG
-dbtest = DBmanager("./data/saves.json")
-dbtest.loadFromFile()
+db = DBmanager("./data/saves.json")
+db.loadFromFile()
 map = Map()
 
 
@@ -55,7 +55,7 @@ map = Map()
 async def creaPG(ctx, *args):
     id = str(ctx.guild.id) + str(ctx.author.id)
 
-    if id in dbtest.getKeys():
+    if id in db.getKeys():
         await ctx.reply("Hai già un PG.")
     elif len(args) != 2:
         await ctx.reply(
@@ -64,26 +64,28 @@ async def creaPG(ctx, *args):
         pg = PG(args[0], args[1], 1, 0.0, random.randint(-1, 5),
                 random.randint(-1, 5))
         #updatePGinDB(id, pg)
-        dbtest.updateDB(id, pg)
+        db.updateDB(id, pg)
         await ctx.reply("Creazione completata.\n" + pg.printInfo())
 
 
 @bot.command(name='vediPG', help='fa quello che dice')
 async def vediPG(ctx):
     id = str(ctx.guild.id) + str(ctx.author.id)
-    if id not in dbtest.getKeys():
+    if id not in db.getKeys():
         await ctx.reply("Non hai un PG da visualizzare.")
     else:
-        pg = getPGinfo(dbtest.dictFromDB(id))
+        pg = getPGinfo(db.dictFromDB(id))
         await ctx.reply(pg.printInfo())
 
 
 @bot.command(name='eliminaPG', help='fa quello che dice')
 async def eliminaPG(ctx, arg):
     id = str(ctx.guild.id) + str(ctx.author.id)
-    if arg == "confermo" and id in dbtest.getKeys():
+    if arg == "confermo" and id in db.getKeys():
         #del db[id]
-        dbtest.deleteDB(id)
+        db.deleteDB(id)
+        if db.isInCombat(id):
+            db.endCombat(id)
         await ctx.reply("Eliminazione completata.")
     else:
         await ctx.reply("""Eliminazione errata,\nEs: -eliminaPG confermo """)
@@ -97,18 +99,35 @@ async def apriMappa(ctx):
 @bot.command(name='esplora', help='fa quello che dice')
 async def esplora(ctx, idluogo: int):
     id = str(ctx.guild.id) + str(ctx.author.id)
-    if not (id in dbtest.getKeys()):
+    if not (id in db.getKeys()):
         await ctx.reply("Non hai un PG con cui esplorare!")
     elif (map.canExplore(idluogo)):
-        nome = dbtest.dictFromDB(id)['nome']
-        location = map.locationName(idluogo)
-        enc = map.explore(idluogo)
-        await ctx.reply(nome + " esplorando <" + location +
-                        "> ha incontrato un " + enc)
+        if(db.isInCombat(id)):
+            await ctx.reply("Non puoi esplorare mentre stai combattedo!")
+        else:
+            nome = db.dictFromDB(id)['nome']
+            location = map.locationName(idluogo)
+            enc = map.explore(idluogo)
+            await ctx.reply(nome + " esplorando <" + location +
+                            "> ha incontrato un " + enc.nome)
     else:
         await ctx.reply("Luogo non valido.")
 
-
+@bot.command(name='combat', help='fa quello che dice')
+#azioni = info, attacca, fuggi ...
+async def combat(ctx, azione):
+    await ctx.reply("Work In Progress")
+    
+    """
+    id = str(ctx.guild.id) + str(ctx.author.id)
+    if not db.isInCombat():
+        await ctx.reply("Non hai alcun combattimento attivo attualmente.")
+    elif ('info' == azione):
+        comb = db.getCombatInfo(id)
+        #stampare le info sulla battaglia in corso
+        
+    """
+    
 @bot.event
 async def on_ready():
     print('Bot is ready')

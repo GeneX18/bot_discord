@@ -35,3 +35,12 @@ def date_handler(obj):
     else:
         raise TypeError("Unserializable object {} of type {}".format(
             obj, type(obj)))
+
+
+
+
+
+class Combat:
+    def __init__(self, pg, enemy):
+        self.pg = pg
+        self.enemy = enemy
