@@ -93,7 +93,7 @@ class Combat:
             #hit
             en_actionTxt += " colpisce il bersaglio"
         en_actionTxt += " infliggendo "+ str(dmg) +" danni"
-        self.enemy_hp -= dmg
+        self.pg_hp -= dmg
         if self.enemy_hp <= 0:
             en_actionTxt += " uccidendo il bersaglio.\nHAI PERSO!"
         else:
