@@ -142,11 +142,17 @@ async def combat(ctx, azione):
         pg = comb.pg
         en = comb.enemy
         txt = "INFO Battaglia\n"+pg.nome+" HP: "+str(comb.pg_hp)+"/"+str(comb.getMaxPgHp())+"\n"+en.nome+" HP:"+str(comb.enemy_hp)+"/"+str(comb.getMaxEnemyHp())
-        txt2 = "\nComandi per la battaglia consentiti:\n-combat fuggi\n-combat info\naltri work in progress..."
+        txt2 = "\n\nComandi per la battaglia consentiti:\n-combat fuggi\n-combat info\naltri work in progress..."
         await ctx.reply(txt+txt2)
     elif ('fuggi' == azione):
         db.endCombat(id)
         await ctx.reply("Fuga effettuata")
+    elif ('attacca' == azione):
+        comb = db.getCombatInfo(id)
+        comb_result = comb.fight()
+        if(comb.pg_hp <= 0 or comb.enemy_hp <= 0):
+            db.endCombat()
+        await ctx.reply(comb_result)
     else:
         await ctx.reply("Qualcosa è andato storto")
     
