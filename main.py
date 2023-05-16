@@ -132,10 +132,13 @@ async def esplora(ctx, idluogo: int):
 async def combat(ctx, azione):
     #await ctx.reply("Work In Progress")
     
-    #"""
+   
     id = str(ctx.guild.id) + str(ctx.author.id)
     if not db.isInCombat():
         await ctx.reply("Non hai alcun combattimento attivo attualmente.")
+    else:
+        await ctx.reply("Qualcosa è andato storto")
+    """
     elif ('info' == azione):
         await ctx.reply("ciao")
         comb = db.getCombatInfo(id)
@@ -148,9 +151,9 @@ async def combat(ctx, azione):
     elif ('fuggi' == azione):
         db.endCombat(id)
         await ctx.reply("Fuga effettuata")
-    else:
-        await ctx.reply("Qualcosa è andato storto")
-    #"""
+    """
+    
+    
     
 @bot.event
 async def on_ready():
