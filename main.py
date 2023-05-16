@@ -36,6 +36,9 @@ pesi = [.75, .2, .04, .01]
 bot = commands.Bot(command_prefix='-', intents=intents)
 #slash = SlashCommand(bot, sync_commands=True)
 
+@bot.command(name='ciao', help='fa cose belle')
+async def cerca(ctx):
+    await ctx.reply("Ciao.")
 
 @bot.command(name='cerca', help='fa cose belle')
 async def cerca(ctx):
