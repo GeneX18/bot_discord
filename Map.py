@@ -33,6 +33,7 @@ class Map:
     def explore(self, locId):
         lID = locId - 1
         list = spawnList[lID]
-        encounter = random.choices(list, spawnRate, k=1)
+        encounter = random.choices(list, spawnRate, k=1)[0]
+        print(encounter)
 
         return encounter

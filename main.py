@@ -14,8 +14,7 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 
-intents = discord.Intents.default()
-intents.message_content = True
+intents = discord.Intents.all()
 intents.members = True
 intents.messages = True
 
@@ -45,6 +44,13 @@ async def cerca(ctx):
         str(ctx.author.name) + ' ha trovato ' +
         ''.join(random.choices(cose, pesi, k=1)).format(r))
 
+@bot.command(name='killbot', help='fa cose belle')
+async def cerca(ctx):
+    if ctx.author.id != 343364185905954816:
+        await ctx.reply("Non puoi usare questo comando")
+    else:
+        await ctx.reply("Il Bot si sta chiudendo...")
+        exit()
 
 # COMANDI RPG
 db = DBmanager("./data/saves.json")
@@ -149,6 +155,8 @@ async def on_message(message):
         txt = "<@1030221184605884426> smettila...".format(message)
         await message.reply(txt)
     await bot.process_commands(message)
+
+
 
 
 bot.run(TOKEN)
