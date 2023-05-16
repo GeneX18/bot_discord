@@ -134,6 +134,7 @@ async def combat(ctx, azione):
     
     #"""
     id = str(ctx.guild.id) + str(ctx.author.id)
+    await ctx.reply("sto lavorando")
     if not db.isInCombat():
         await ctx.reply("Non hai alcun combattimento attivo attualmente.")
     elif ('info' == azione):
