@@ -130,7 +130,7 @@ async def esplora(ctx, idluogo: int):
 @bot.command(name='combat', help='fa quello che dice')
 #azioni = info, attacca, fuggi ...
 async def combat(ctx, azione):
-    await ctx.reply("Work In Progress")
+    #await ctx.reply("Work In Progress")
     
     #"""
     id = str(ctx.guild.id) + str(ctx.author.id)
@@ -147,6 +147,8 @@ async def combat(ctx, azione):
     elif ('fuggi' == azione):
         db.endCombat(id)
         await ctx.reply("Fuga effettuata")
+    else:
+        await ctx.reply("Qualcosa è andato storto")
     #"""
     
 @bot.event
