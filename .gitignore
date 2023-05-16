@@ -1,5 +1,6 @@
 #data folder
 data/
+data/saves.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
