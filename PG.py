@@ -58,7 +58,7 @@ class Combat:
         pg_actionTxt = self.pg.nome+""
         en_actionTxt = self.enemy.nome+""
         hit = random.randint(1,20)
-        dmg = random.randint(2,12)
+        dmg = random.randint(2,12)+self.pg.power
         if hit == 1:
             #miss
             pg_actionTxt += " manca il bersaglio"
@@ -93,8 +93,8 @@ class Combat:
             #hit
             en_actionTxt += " colpisce il bersaglio"
         en_actionTxt += " infliggendo "+ str(dmg) +" danni"
-        self.pg_hp -= dmg
-        if self.pg_hp <= 0:
+        self.en_hp -= dmg
+        if self.en_hp <= 0:
             en_actionTxt += " uccidendo il bersaglio.\nHAI PERSO!"
         else:
             en_actionTxt += "."
