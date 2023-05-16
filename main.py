@@ -137,13 +137,12 @@ async def combat(ctx, azione):
     if not db.isInCombat(id):
         await ctx.reply("Non hai alcun combattimento attivo attualmente.")
     elif ('info' == azione):
-        await ctx.reply("ciao")
         comb = db.getCombatInfo(id)
         #stampare le info sulla battaglia in corso
         pg = comb.pg
         en = comb.enemy
         txt = "INFO Battaglia\n"+pg.nome+" HP: "+str(comb.pg_hp)+"/"+str(comb.getMaxPgHp())+"\n"+en.nome+" HP:"+str(comb.enemy_hp)+"/"+str(comb.getMaxEnemyHp())
-        txt2 = "Comandi per la battaglia consentiti:\n-combat fuggi\n-combat info\naltri work in progress..."
+        txt2 = "\nComandi per la battaglia consentiti:\n-combat fuggi\n-combat info\naltri work in progress..."
         await ctx.reply(txt+txt2)
     elif ('fuggi' == azione):
         db.endCombat(id)
