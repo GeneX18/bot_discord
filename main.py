@@ -5,6 +5,7 @@ from DBmanager import DBmanager
 from PG import PG
 from PG import getPGinfo
 from Map import Map
+from PG import Combat
 from discord.ext import commands
 #from discord_slash import SlashCommand, SlashContext
 #from discord_slash.utils.manage_commands import create_choice, create_option
@@ -112,15 +113,17 @@ async def esplora(ctx, idluogo: int):
     id = str(ctx.guild.id) + str(ctx.author.id)
     if not (id in db.getKeys()):
         await ctx.reply("Non hai un PG con cui esplorare!")
-    elif (map.canExplore(idluogo)):
-        if(db.isInCombat(id)):
+    elif (map.canExplore(idluogo)): 
+        if(db.isInCombat(id)): #se è già in combat
             await ctx.reply("Non puoi esplorare mentre stai combattedo!")
-        else:
-            nome = db.dictFromDB(id)['nome']
+        else: #se non è già in combat
+            pg = db.dictFromDB(id)
+            nome = pg['nome']
             location = map.locationName(idluogo)
             enc = map.explore(idluogo)
             await ctx.reply(nome + " esplorando <" + location +
                             "> ha incontrato un " + enc.nome)
+            db.insertCombat(id, Combat(getPGinfo(pg),enc))
     else:
         await ctx.reply("Luogo non valido.")
 
@@ -129,15 +132,22 @@ async def esplora(ctx, idluogo: int):
 async def combat(ctx, azione):
     await ctx.reply("Work In Progress")
     
-    """
+    #"""
     id = str(ctx.guild.id) + str(ctx.author.id)
     if not db.isInCombat():
         await ctx.reply("Non hai alcun combattimento attivo attualmente.")
     elif ('info' == azione):
         comb = db.getCombatInfo(id)
         #stampare le info sulla battaglia in corso
-        
-    """
+        pg = comb.pg
+        en = comb.enemy
+        txt = "INFO Battaglia\n"+pg.nome+" HP: "+str(comb.pg_hp)+"/"+str(comb.getMaxPgHp())+"\n"+en.nome+" HP:"+str(comb.enemy_hp)+"/"+str(comb.getMaxEnemyHp())
+        txt2 = "Comandi per la battaglia consentiti:\n-combat fuggi\n-combat info\naltri work in progress..."
+        await ctx.reply(txt+txt2)
+    elif ('fuggi' == azione):
+        db.endCombat(id)
+        await ctx.reply("Fuga effettuata")
+    #"""
     
 @bot.event
 async def on_ready():

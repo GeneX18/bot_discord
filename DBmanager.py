@@ -49,5 +49,8 @@ class DBmanager:
     def getCombatInfo(self, usrId):
         return db_combat[usrId]
     
+    def insertCombat(self, usrId, combat_obj):
+        db_combat[usrId] = combat_obj
+    
     def endCombat(self, usrId):
         del db_combat[usrId]

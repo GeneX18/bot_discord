@@ -23,7 +23,6 @@ class PG:
                 self.health) + "\nPower stat:" + str(self.power)
         return info
 
-
 def getPGinfo(obj):
     return PG(obj['nome'], obj['classe'], obj['lvl'], obj['exp'],
               obj['health'], obj['power'])
@@ -44,3 +43,11 @@ class Combat:
     def __init__(self, pg, enemy):
         self.pg = pg
         self.enemy = enemy
+        self.pg_hp = self.getMaxPgHp()
+        self.enemy_hp = self.getMaxEnemyHp()
+        
+    def getMaxPgHp(self):
+        return 20+((5+self.pg.health)*self.pg.lvl)
+    
+    def getMaxEnemyHp(self):
+        return 20
