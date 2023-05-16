@@ -46,7 +46,7 @@ async def cerca(ctx):
 
 @bot.command(name='killbot', help='fa cose belle')
 async def cerca(ctx):
-    if ctx.author.id != 343364185905954816:
+    if ctx.author.id != 343364185905954816 and ctx.author.id != 145629365810626560:
         await ctx.reply("Non puoi usare questo comando")
     else:
         await ctx.reply("Il Bot si sta chiudendo...")
