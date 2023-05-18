@@ -65,11 +65,11 @@ class Combat:
             dmg = 0
         elif hit == 20:
             #crit
-            pg_actionTxt += " devasta il bersaglio"
+            pg_actionTxt += " infligge un colpo devastante"
             dmg += 12
         else:
             #hit
-            pg_actionTxt += " colpisce il bersaglio"
+            pg_actionTxt += " colpisce"
             
         pg_actionTxt += " infliggendo "+ str(dmg) +" danni"
         self.enemy_hp -= dmg
@@ -87,11 +87,11 @@ class Combat:
             dmg = 0
         elif hit >= 18:
             #crit
-            en_actionTxt += " devasta il bersaglio"
+            en_actionTxt += " infligge un colpo devastante"
             dmg += 8
         else:
             #hit
-            en_actionTxt += " colpisce il bersaglio"
+            en_actionTxt += " colpisce"
         en_actionTxt += " infliggendo "+ str(dmg) +" danni"
         self.pg_hp -= dmg
         if self.pg_hp <= 0:
