@@ -6,7 +6,7 @@ class PG:
         self.nome = nome
         self.classe = classe
         self.lvl = lvl
-        self.exp = exp
+        self.exp = format(exp, '.1f')
         self.health = health
         self.power = power
 
@@ -16,7 +16,7 @@ class PG:
         self.lvl += n
 
     def maxExpFormula(self):
-        return format((88*(1.3**(self.lvl-1))), '.2f')
+        return format((88*(1.3**(self.lvl-1))), '.1f')
     
     
     def gainExp(self, n):
