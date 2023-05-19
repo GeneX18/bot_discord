@@ -53,3 +53,6 @@ class DBmanager:
     
     def endCombat(self, usrId):
         del db_combat[usrId]
+
+    def printRobe(self):
+        return str(db_combat)

@@ -124,8 +124,7 @@ async def esplora(ctx, idluogo: int):
             await ctx.reply(nome + " esplorando <" + location +
                             "> ha incontrato un " + enc.nome)
             db.insertCombat(id, Combat(getPGinfo(pg),enc))
-            if not db.isInCombat(id):
-                await ctx.reply("DAIIIIIIIIIIIIIIIIIIII")
+            await ctx.reply(db.printRobe())
     else:
         await ctx.reply("Luogo non valido.")
 
