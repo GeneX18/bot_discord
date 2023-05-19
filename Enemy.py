@@ -17,6 +17,10 @@ class Enemy:
         
         self.dmg_dices = dices[gs]
         
+        self.STR_mod = gs
+        if self.hasAbility(Ability.STRONG):
+            self.STR_mod += 3
+            
         
     def hasAbility(self, ab):
         if ab in self.abilities: return True
@@ -27,7 +31,7 @@ class Enemy:
         en_actionTxt = self.nome+""
         
         hit = random.randint(1,20)
-        dmg = random.randint(self.dmg_dices[0],self.dmg_dices[1])
+        dmg = random.randint(self.dmg_dices[0],self.dmg_dices[1])+self.STR_mod
         
         if hit == 1:
             #miss

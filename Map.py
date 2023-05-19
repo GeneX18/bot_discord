@@ -6,15 +6,15 @@ from Ability import Ability
 cinghiale = Enemy("Cinghiale",0)
 coniglio_mannaro = Enemy("Coniglio mannaro",1,[Ability.SUPER_SPEED])
 goblin = Enemy("Goblin",1,[Ability.COWARD])
-bugbear = Enemy("Bugbear",2)
-orsogufo = Enemy("Orsogufo",2)
-treant = Enemy("Treant",3)
-drago_verde = Enemy("Drago verde",5,[Ability.SUPER_SPEED,Ability.BUTCHER])
+bugbear = Enemy("Bugbear",2,[Ability.STRONG])
+orsogufo = Enemy("Orsogufo",2,[Ability.STRONG])
+treant = Enemy("Treant",3,[Ability.STRONG])
+drago_verde = Enemy("Drago verde",5,[Ability.SUPER_SPEED,Ability.BUTCHER,Ability.STRONG])
 ragno = Enemy("Ragno gigante",1)
 bandito = Enemy("Bandito",1,[Ability.COWARD])
 proto_nero = Enemy("Protoplasma nero",2)
-orco = Enemy("Orco",3,[Ability.BUTCHER])
-golem_pietra = Enemy("Golem di Pietra",4,[Ability.BUTCHER])
+orco = Enemy("Orco",3,[Ability.BUTCHER,Ability.STRONG])
+golem_pietra = Enemy("Golem di Pietra",4,[Ability.BUTCHER,Ability.STRONG])
 
 
 
