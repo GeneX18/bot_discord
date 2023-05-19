@@ -64,6 +64,8 @@ map = Map()
 for key in db.getDB:
     pg = getPGinfo(db.dictFromDB(id))
     db.updateDB(key,pg)
+    
+db.saveInFile()
 
 @bot.command(name='creaPG', help='fa quello che dice')
 async def creaPG(ctx, *args):
