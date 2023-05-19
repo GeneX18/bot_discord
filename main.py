@@ -86,6 +86,7 @@ async def vediPG(ctx):
     if id not in db.getKeys():
         await ctx.reply("Non hai un PG da visualizzare.")
     else:
+        await ctx.reply(db.dictFromDB(id))
         pg = getPGinfo(db.dictFromDB(id))
         await ctx.reply(pg.printInfo())
 
@@ -123,9 +124,7 @@ async def esplora(ctx, idluogo: int):
             enc = map.explore(idluogo)
             await ctx.reply(nome + " esplorando <" + location +
                             "> ha incontrato un " + enc.nome)
-            db.insertCombat(id, Combat(getPGinfo(pg),enc,0))
-
-            await ctx.reply(db.printRobe())
+            db.insertCombat(id, Combat(getPGinfo(pg),enc))
     else:
         await ctx.reply("Luogo non valido.")
 
