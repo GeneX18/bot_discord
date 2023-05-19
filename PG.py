@@ -107,7 +107,7 @@ class Combat:
         if self.round == 1:
             if self.enemy.hasAbility(Ability.DISTANCE):
                 enemyResult = self.enemy.fight(self)
-                final_txt += self.enemy.nome+" vede il bersaglio dalla distanza e ne approfitta!"
+                final_txt += self.enemy.nome+" vede il bersaglio dalla distanza e ne approfitta!\n"
                 final_txt += enemyResult[1]+"\n"
                 return [enemyResult[0],final_txt]
         
