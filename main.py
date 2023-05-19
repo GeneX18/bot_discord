@@ -124,13 +124,14 @@ async def esplora(ctx, idluogo: int):
             await ctx.reply(nome + " esplorando <" + location +
                             "> ha incontrato un " + enc.nome)
             db.insertCombat(id, Combat(getPGinfo(pg),enc))
+            if not db.isInCombat(id):
+                await ctx.reply("DAIIIIIIIIIIIIIIIIIIII")
     else:
         await ctx.reply("Luogo non valido.")
 
 @bot.command(name='combat', help='fa quello che dice')
 #azioni = info, attacca, fuggi ...
 async def combat(ctx, azione):
-   
    
     id = str(ctx.guild.id) + str(ctx.author.id)
     if not db.isInCombat(id):
