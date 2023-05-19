@@ -50,7 +50,9 @@ class PG:
         combat.enemy_hp -= dmg
         if combat.enemy_hp <= 0:
             pg_actionTxt += " uccidendo il bersaglio.\nHAI VINTO!"
+            print("guadagnati:"+str(combat.enemy.giveExp()))
             self.gainExp(combat.enemy.giveExp())
+            print("attuali:"+str(self.exp))
             return [True, pg_actionTxt]
         
         pg_actionTxt += "."
