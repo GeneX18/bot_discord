@@ -130,8 +130,7 @@ async def esplora(ctx, idluogo: int):
 @bot.command(name='combat', help='fa quello che dice')
 #azioni = info, attacca, fuggi ...
 async def combat(ctx, azione):
-    #await ctx.reply("Work In Progress")
-    
+   
    
     id = str(ctx.guild.id) + str(ctx.author.id)
     if not db.isInCombat(id):
@@ -150,16 +149,16 @@ async def combat(ctx, azione):
     elif ('attacca' == azione):
         comb = db.getCombatInfo(id)
         comb_result = comb.fight()
-        if(comb.pg_hp <= 0 or comb.enemy_hp <= 0):
+        if comb_result[0] == True:
             db.endCombat(id)
         else:
             #stampare le info sulla battaglia in corso
             pg = comb.pg
             en = comb.enemy
             txt = "\n"+pg.nome+" HP: "+str(comb.pg_hp)+"/"+str(comb.getMaxPgHp())+"\n"+en.nome+" HP:"+str(comb.enemy_hp)+"/"+str(comb.getMaxEnemyHp())
-            comb_result += "\n"+txt
+            txt_result = comb_result[1] + "\n"+txt
             
-        await ctx.reply(comb_result)
+        await ctx.reply(txt_result)
     else:
         await ctx.reply("Qualcosa è andato storto")
     
