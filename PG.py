@@ -33,6 +33,10 @@ class PG:
         pg_actionTxt = self.nome+""
         
         hit = random.randint(1,20)
+        if combat.enemy.hasAbility(Ability.PARRY):
+            if random.randint(1,10) < 2:
+                hit = 0
+                g_actionTxt += combat.enemy.nome+" para il colpo in arrivo.\n"
         dmg = random.randint(2,12)+self.power
         if hit == 1:
             #miss
@@ -86,6 +90,7 @@ class Combat:
         self.enemy = enemy
         self.pg_hp = self.getMaxPgHp()
         self.enemy_hp = self.getMaxEnemyHp()
+        self.round = 1
         
     def getMaxPgHp(self):
         return 20+((5+self.pg.health)*self.pg.lvl)
@@ -97,6 +102,13 @@ class Combat:
         isFightOver = False
         
         final_txt = ""
+        
+        if round == 1:
+            if self.enemy.hasAbility(Ability.DISTANCE):
+                enemyResult = self.enemy.fight(self)
+                final_txt += self.enemy.nome+" vede il bersaglio dalla distanza e ne approfitta!"
+                final_txt += enemyResult[1]+"\n"
+                return [enemyResult[0],final_txt]
         
         if self.enemy.hasAbility(Ability.SUPER_SPEED):
             enemyResult = self.enemy.fight(self)
