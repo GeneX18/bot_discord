@@ -23,7 +23,7 @@ class PG:
             self.changeLvl(1)
 
     def fight(self, combat):
-        pg_actionTxt = self.pg.nome+""
+        pg_actionTxt = self.nome+""
         
         hit = random.randint(1,20)
         dmg = random.randint(2,12)+self.power
@@ -52,7 +52,7 @@ class PG:
         
     def printInfo(self):
         info = self.nome + ": " + self.classe + " lvl " + str(
-            self.lvl) + "\nExp [" + self.exp + "/" + self.maxExpFormula() + "]" + "\nHealth stat: " + str(
+            self.lvl) + "\nExp [" + str(self.exp) + "/" + str(self.maxExpFormula()) + "]" + "\nHealth stat: " + str(
                 self.health) + "\nPower stat: " + str(self.power)
         return info
 
@@ -90,12 +90,6 @@ class Combat:
         pg_actionTxt = ""
         en_actionTxt = ""
         
-        
-        if self.enemy.hasAbility(Ability.COWARD):
-            if((self.enemy_hp*3)<self.getMaxEnemyHp()):
-                return [True, self.enemy.nome+" fugge spaventato."]
-        
-        
         if self.enemy.hasAbility(Ability.SUPER_SPEED):
             enemyResult = self.enemy.fight(self)
             if enemyResult[0]:
@@ -115,5 +109,9 @@ class Combat:
             enemyResult = self.enemy.fight(self)
             en_actionTxt = enemyResult[1]
             isFightOver = enemyResult[0]
+            
+        if self.enemy.hasAbility(Ability.COWARD):
+            if((self.enemy_hp*3)<self.getMaxEnemyHp()):
+                return [True, pg_actionTxt+en_actionTxt+"\n"+self.enemy.nome+" fugge spaventato."]
         
         return [isFightOver, pg_actionTxt+en_actionTxt]

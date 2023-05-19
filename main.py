@@ -149,14 +149,15 @@ async def combat(ctx, azione):
     elif ('attacca' == azione):
         comb = db.getCombatInfo(id)
         comb_result = comb.fight()
-        if comb_result[0] == True:
+        txt_result = comb_result[1]
+        if comb_result[0]:
             db.endCombat(id)
         else:
             #stampare le info sulla battaglia in corso
             pg = comb.pg
             en = comb.enemy
             txt = "\n"+pg.nome+" HP: "+str(comb.pg_hp)+"/"+str(comb.getMaxPgHp())+"\n"+en.nome+" HP:"+str(comb.enemy_hp)+"/"+str(comb.getMaxEnemyHp())
-            txt_result = comb_result[1] + "\n"+txt
+            txt_result += "\n"+txt
             
         await ctx.reply(txt_result)
     else:
