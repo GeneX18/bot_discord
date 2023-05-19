@@ -14,7 +14,7 @@ class PG:
         self.lvl += n
 
     def maxExpFormula(self):
-        return (88*(1.2**(self.lvl-1)))
+        return (88*(1.3**(self.lvl-1)))
     
     
     def gainExp(self, n):
@@ -23,6 +23,9 @@ class PG:
         if self.exp >= max:
             self.exp -= max
             self.changeLvl(1)
+            
+    def loseExp(self):
+        self.exp = 0.0
 
     def fight(self, combat):
         pg_actionTxt = self.nome+""
@@ -45,6 +48,7 @@ class PG:
         combat.enemy_hp -= dmg
         if combat.enemy_hp <= 0:
             pg_actionTxt += " uccidendo il bersaglio.\nHAI VINTO!"
+            self.gainExp(combat.enemy.giveExp())
             return [True, pg_actionTxt]
         
         pg_actionTxt += "."

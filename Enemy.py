@@ -26,6 +26,9 @@ class Enemy:
         if ab in self.abilities: return True
         return False
 
+    def giveExp(self):
+        return 5.0+(5.5*self.gs)
+    
     def fight(self, combat):
         isFightOver = False
         en_actionTxt = self.nome+""
@@ -49,6 +52,7 @@ class Enemy:
         if combat.pg_hp <= 0:
             isFightOver = True
             en_actionTxt += " uccidendo il bersaglio.\nHAI PERSO!"
+            combat.pg.loseExp()
         else:
             en_actionTxt += "."
             
