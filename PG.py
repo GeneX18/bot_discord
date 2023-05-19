@@ -11,6 +11,8 @@ class PG:
         self.power = power
 
     def changeLvl(self, n):
+        if(self.lvl == 5):
+            return
         self.lvl += n
 
     def maxExpFormula(self):
