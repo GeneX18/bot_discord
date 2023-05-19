@@ -90,7 +90,7 @@ class Combat:
         self.enemy = enemy
         self.pg_hp = self.getMaxPgHp()
         self.enemy_hp = self.getMaxEnemyHp()
-        self.round = 1
+        self.round = 0
         
     def getMaxPgHp(self):
         return 20+((5+self.pg.health)*self.pg.lvl)
@@ -103,7 +103,8 @@ class Combat:
         
         final_txt = ""
         
-        if round == 1:
+        self.round += 1
+        if self.round == 1:
             if self.enemy.hasAbility(Ability.DISTANCE):
                 enemyResult = self.enemy.fight(self)
                 final_txt += self.enemy.nome+" vede il bersaglio dalla distanza e ne approfitta!"

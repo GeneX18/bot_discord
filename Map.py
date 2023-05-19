@@ -6,7 +6,7 @@ from Ability import Ability
 cinghiale = Enemy("Cinghiale",0)
 coniglio_mannaro = Enemy("Coniglio mannaro",1,[Ability.SUPER_SPEED])
 goblin = Enemy("Goblin",1,[Ability.COWARD])
-ragno = Enemy("Ragno gigante",1)
+ragno = Enemy("Ragno gigante",1,[Ability.DISTANCE])
 bandito = Enemy("Bandito",1,[Ability.COWARD])
 scheletro = Enemy("Scheletro",2,[Ability.PARRY,Ability.DISTANCE])
 bugbear = Enemy("Bugbear",2,[Ability.STRONG,Ability.PARRY])
