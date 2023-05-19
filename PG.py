@@ -34,7 +34,8 @@ class PG:
         
         hit = random.randint(1,20)
         if combat.enemy.hasAbility(Ability.PARRY):
-            if random.randint(1,10) < 2:
+            r = random.randint(1,10)
+            if (r <= 2):
                 hit = 0
                 g_actionTxt += combat.enemy.nome+" para il colpo in arrivo.\n"
         dmg = random.randint(2,12)+self.power
