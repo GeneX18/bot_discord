@@ -61,6 +61,9 @@ db = DBmanager("./data/saves.json")
 db.loadFromFile()
 map = Map()
 
+for key in db.getDB:
+    pg = getPGinfo(db.dictFromDB(id))
+    db.updateDB(key,pg)
 
 @bot.command(name='creaPG', help='fa quello che dice')
 async def creaPG(ctx, *args):
