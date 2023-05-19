@@ -62,7 +62,7 @@ db.loadFromFile()
 map = Map()
 
 for key in db.getDB():
-    pg = getPGinfo(db.dictFromDB(id))
+    pg = getPGinfo(db.dictFromDB(key))
     db.updateDB(key,pg)
     
 db.saveInFile()
