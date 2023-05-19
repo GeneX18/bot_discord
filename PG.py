@@ -87,8 +87,6 @@ class Combat:
     
     def fight(self):
         isFightOver = False
-        pg_actionTxt = ""
-        en_actionTxt = ""
         
         final_txt = ""
         
@@ -96,7 +94,7 @@ class Combat:
             enemyResult = self.enemy.fight(self)
             if enemyResult[0]:
                 return enemyResult
-            final_txt += enemyResult[1]
+            final_txt += enemyResult[1]+"\n"
             
             pgResult = self.pg.fight(self)
             final_txt += pgResult[1]
@@ -106,14 +104,14 @@ class Combat:
             pgResult = self.pg.fight(self)
             if pgResult[0]:
                 return pgResult
-            final_txt += pgResult[1]
+            final_txt += pgResult[1]+"\n"
             
             enemyResult = self.enemy.fight(self)
             final_txt += enemyResult[1]
             isFightOver = enemyResult[0]
             
         if self.enemy.hasAbility(Ability.COWARD):
-            if((self.enemy_hp*3)<self.getMaxEnemyHp()):
+            if((self.enemy_hp*2)<self.getMaxEnemyHp()):
                 return [True, final_txt + "\n"+self.enemy.nome+" fugge spaventato."]
         
         return [isFightOver, final_txt]
