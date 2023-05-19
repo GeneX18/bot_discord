@@ -38,7 +38,7 @@ bot = commands.Bot(command_prefix='-', intents=intents)
 #slash = SlashCommand(bot, sync_commands=True)
 
 @bot.command(name='ciao', help='fa cose belle')
-async def cerca(ctx):
+async def ciao(ctx):
     await ctx.reply("Ciao.")
 
 @bot.command(name='cerca', help='fa cose belle')
@@ -49,7 +49,7 @@ async def cerca(ctx):
         ''.join(random.choices(cose, pesi, k=1)).format(r))
 
 @bot.command(name='killbot', help='fa cose belle')
-async def cerca(ctx):
+async def kill(ctx):
     if ctx.author.id != 343364185905954816 and ctx.author.id != 145629365810626560:
         await ctx.reply("Non puoi usare questo comando")
     else:
