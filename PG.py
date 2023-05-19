@@ -36,7 +36,7 @@ class PG:
         
         #PARRY
         if combat.enemy.hasAbility(Ability.PARRY):
-            if (hit <= 6):
+            if (hit < 6):
                 hit = 0
                 g_actionTxt += combat.enemy.nome+" para il colpo in arrivo.\n"
 
