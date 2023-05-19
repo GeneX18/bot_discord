@@ -90,28 +90,30 @@ class Combat:
         pg_actionTxt = ""
         en_actionTxt = ""
         
+        final_txt = ""
+        
         if self.enemy.hasAbility(Ability.SUPER_SPEED):
             enemyResult = self.enemy.fight(self)
             if enemyResult[0]:
                 return enemyResult
-            en_actionTxt = enemyResult[1]
+            final_txt += enemyResult[1]
             
             pgResult = self.pg.fight(self)
-            pg_actionTxt = pgResult[1]
+            final_txt += pgResult[1]
             isFightOver = pgResult[0]
             
         else:
             pgResult = self.pg.fight(self)
             if pgResult[0]:
                 return pgResult
-            pg_actionTxt = pgResult[1]
+            final_txt += pgResult[1]
             
             enemyResult = self.enemy.fight(self)
-            en_actionTxt = enemyResult[1]
+            final_txt += enemyResult[1]
             isFightOver = enemyResult[0]
             
         if self.enemy.hasAbility(Ability.COWARD):
             if((self.enemy_hp*3)<self.getMaxEnemyHp()):
-                return [True, pg_actionTxt+en_actionTxt+"\n"+self.enemy.nome+" fugge spaventato."]
+                return [True, final_txt + "\n"+self.enemy.nome+" fugge spaventato."]
         
-        return [isFightOver, pg_actionTxt+en_actionTxt]
+        return [isFightOver, final_txt]
