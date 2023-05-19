@@ -60,13 +60,13 @@ async def kill(ctx):
 db = DBmanager("./data/saves.json")
 db.loadFromFile()
 map = Map()
-"""
+
 for key in db.getDB():
     pg = getPGinfo(db.dictFromDB(key))
     db.updateDB(key,pg)
     
 db.saveInFile()
-"""
+
 
 @bot.command(name='creaPG', help='fa quello che dice')
 async def creaPG(ctx, *args):
