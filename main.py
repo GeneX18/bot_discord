@@ -61,7 +61,7 @@ db = DBmanager("./data/saves.json")
 db.loadFromFile()
 map = Map()
 
-for key in db.getDB:
+for key in db.getDB():
     pg = getPGinfo(db.dictFromDB(id))
     db.updateDB(key,pg)
     
