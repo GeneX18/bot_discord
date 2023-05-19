@@ -152,6 +152,7 @@ async def combat(ctx, azione):
         txt_result = comb_result[1]
         if comb_result[0]:
             db.endCombat(id)
+            db.saveInFile()
         else:
             #stampare le info sulla battaglia in corso
             pg = comb.pg
