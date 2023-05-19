@@ -151,6 +151,7 @@ async def combat(ctx, azione):
         comb_result = comb.fight()
         txt_result = comb_result[1]
         if comb_result[0]:
+            db.updateDB(id, comb.pg)
             db.endCombat(id)
             db.saveInFile()
         else:
