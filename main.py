@@ -123,8 +123,7 @@ async def esplora(ctx, idluogo: int):
             enc = map.explore(idluogo)
             await ctx.reply(nome + " esplorando <" + location +
                             "> ha incontrato un " + enc.nome)
-            db.insertCombat(id, Combat(getPGinfo(pg),enc))
-            await ctx.reply("test")
+            db.insertCombat(id, Combat(getPGinfo(pg),enc,0))
 
             await ctx.reply(db.printRobe())
     else:
