@@ -6,7 +6,6 @@ db_combat = {}
 class DBmanager:
     def __init__(self, f_name):
         self.f_name = f_name
-        print(f_name)
 
     #Upload
     def loadFromFile(self):
