@@ -45,7 +45,7 @@ class PG:
             pg_actionTxt += " uccidendo il bersaglio.\nHAI VINTO!"
             return [True, pg_actionTxt]
         
-        pg_actionTxt += ".\n"
+        pg_actionTxt += "."
         return [False, pg_actionTxt]
         
         
