@@ -16,7 +16,7 @@ class PG:
         self.lvl += n
 
     def maxExpFormula(self):
-        return (88*(1.3**(self.lvl-1)))
+        return format((88*(1.3**(self.lvl-1))), '.2f')
     
     
     def gainExp(self, n):
