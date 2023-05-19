@@ -89,12 +89,12 @@ def date_handler(obj):
 
 
 class Combat:
-    def __init__(self, pg, enemy):
+    def __init__(self, pg, enemy, round = 0):
         self.pg = pg
         self.enemy = enemy
         self.pg_hp = self.getMaxPgHp()
         self.enemy_hp = self.getMaxEnemyHp()
-        self.round = 0
+        self.round = round
         
     def getMaxPgHp(self):
         return 20+((5+self.pg.health)*self.pg.lvl)
@@ -113,7 +113,8 @@ class Combat:
                 enemyResult = self.enemy.fight(self)
                 final_txt += self.enemy.nome+" vede il bersaglio dalla distanza e ne approfitta!\n"
                 final_txt += enemyResult[1]+"\n"
-                return [enemyResult[0],final_txt]
+                isFightOver = enemyResult[0]
+                return [isFightOver,final_txt]
         
         if self.enemy.hasAbility(Ability.SUPER_SPEED):
             enemyResult = self.enemy.fight(self)
