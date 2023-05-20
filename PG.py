@@ -74,7 +74,7 @@ class PG:
         return info
 
 def getPGinfo(obj):
-    return PG(obj['nome'], obj['classe'], obj['lvl'], 0.0,
+    return PG(obj['nome'], obj['classe'], obj['lvl'], obj['exp'],
               obj['health'], obj['power'])
 
 
