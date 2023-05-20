@@ -6,7 +6,7 @@ class PG:
         self.nome = nome
         self.classe = classe
         self.lvl = lvl
-        self.exp = format(exp, '.1f')
+        self.exp = float(exp)
         self.health = health
         self.power = power
 
