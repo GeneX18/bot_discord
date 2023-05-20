@@ -7,7 +7,7 @@ class PG:
         self.nome = nome
         self.classe = classe
         self.lvl = lvl
-        self.exp = math.ceil(float(exp)*10)/10
+        self.exp = exp
         self.health = health
         self.power = power
 
