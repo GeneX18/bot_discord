@@ -93,6 +93,7 @@ async def vediPG(ctx):
     if id not in db.getKeys():
         await ctx.reply("Non hai un PG da visualizzare.")
     else:
+        await ctx.reply(db.dictFromDB(id))
         pg = getPGinfo(db.dictFromDB(id))
         await ctx.reply(pg.printInfo())
 
