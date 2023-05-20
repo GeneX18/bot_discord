@@ -27,7 +27,8 @@ class Enemy:
         return False
 
     def giveExp(self):
-        return format(5.0+(5.5*self.gs), '.1f')
+        val : float = 5.0+(5.5*self.gs)
+        return format(val, '.1f')
     
     def fight(self, combat):
         isFightOver = False

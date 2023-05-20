@@ -20,7 +20,7 @@ class PG:
     
     
     def gainExp(self, n):
-        max = self.maxExpFormula()
+        max : float = self.maxExpFormula()
         self.exp += n
         if self.exp >= max:
             self.exp -= max
