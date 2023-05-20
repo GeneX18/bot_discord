@@ -1,4 +1,5 @@
 import random
+import math
 from Ability import Ability
 
 class PG:
@@ -6,7 +7,7 @@ class PG:
         self.nome = nome
         self.classe = classe
         self.lvl = lvl
-        self.exp = float(exp)
+        self.exp = math.ceil(float(exp)*10)/10
         self.health = health
         self.power = power
 
@@ -16,7 +17,7 @@ class PG:
         self.lvl += n
 
     def maxExpFormula(self):
-        return format((88*(1.3**(self.lvl-1))), '.1f')
+        return math.ceil((88*(1.3**(self.lvl-1)))*10)/10
     
     
     def gainExp(self, n):

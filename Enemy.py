@@ -1,4 +1,5 @@
 import random
+import math
 from Ability import Ability
 
 #[minValue, maxValue]
@@ -28,7 +29,7 @@ class Enemy:
 
     def giveExp(self):
         val : float = 5.0+(5.5*self.gs)
-        return format(val, '.1f')
+        return math.ceil(val*10)/10
     
     def fight(self, combat):
         isFightOver = False
